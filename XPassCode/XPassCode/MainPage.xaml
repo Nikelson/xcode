@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XPassCode"
+             xmlns:converter="clr-namespace:XPassCode.Converters"
+             x:Class="XPassCode.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:PasscodeValueConverter x:Key="PasscodeValueConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <StackLayout x:Name="ValueContainer" HorizontalOptions="Center" Orientation="Horizontal">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+
+                <Frame Padding="0, 0, 0, 2" BackgroundColor="Blue">
+                    <Frame BackgroundColor="White" WidthRequest="30">
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            TextColor="Black"
+                            FontSize="30"
+                            BindingContext="{x:Reference PasscodeEntry}"
+                            Text="{Binding Text, Converter={StaticResource PasscodeValueConverter}, ConverterParameter=0}"
+                        ></Label>
+                    </Frame>
+                </Frame>
+
+                <Frame Padding="0, 0, 0, 2" BackgroundColor="Blue">
+                    <Frame BackgroundColor="White" WidthRequest="30">
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            TextColor="Black"
+                            FontSize="30"
+                            BindingContext="{x:Reference PasscodeEntry}"
+                            Text="{Binding Text, Converter={StaticResource PasscodeValueConverter}, ConverterParameter=1}"
+                        ></Label>
+                    </Frame>
+                </Frame>
+
+                <Frame Padding="0, 0, 0, 2" BackgroundColor="Blue">
+                    <Frame BackgroundColor="White" WidthRequest="30">
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            TextColor="Black"
+                            FontSize="30"
+                            BindingContext="{x:Reference PasscodeEntry}"
+                            Text="{Binding Text, Converter={StaticResource PasscodeValueConverter}, ConverterParameter=2}"
+                        ></Label>
+                    </Frame>
+                </Frame>
+
+                <Frame Padding="0, 0, 0, 2" BackgroundColor="Blue">
+                    <Frame BackgroundColor="White" WidthRequest="30">
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            TextColor="Black"
+                            FontSize="30"
+                            BindingContext="{x:Reference PasscodeEntry}"
+                            Text="{Binding Text, Converter={StaticResource PasscodeValueConverter}, ConverterParameter=3}"
+                        ></Label>
+                    </Frame>
+                </Frame>
+
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" 
+                    Margin="30">
+                <Label
+                    TextColor="Black"
+                    FontSize="40"
+                    Text="Code: ">
+                </Label>
+                <Label
+                    TextColor="Red"
+                    FontSize="40"
+                    BindingContext="{x:Reference PasscodeEntry}"
+                    Text="{Binding Text}">
+                </Label>
+            </StackLayout>
+
+            <StackLayout Padding="40">
+                <Entry Text="" Placeholder="Username" x:Name="username"></Entry>
+                <Entry IsPassword="True" Placeholder="Password" x:Name="password"></Entry>
+                <Button Clicked="Button_Clicked" HorizontalOptions="Center" Text="Make call"></Button>
+                <Label>Response:</Label>
+                <Label x:Name="resultText"></Label>
+            </StackLayout>
+            
+            <Entry x:Name="PasscodeEntry" BackgroundColor="Black" Keyboard="Numeric" TextChanged="PasscodeEntry_TextChanged" IsEnabled="True" HeightRequest="1" WidthRequest="1" Opacity="0" TextColor="White" Text=""></Entry>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
